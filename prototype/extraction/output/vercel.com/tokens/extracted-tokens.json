@@ -1,0 +1,183 @@
+{
+  "extractedAt": "2026-01-15T15:30:00.000Z",
+  "url": "https://vercel.com/",
+  "colors": {
+    "raw": [
+      "rgb(23, 23, 23)",
+      "rgb(17, 17, 17)",
+      "rgb(0, 0, 0)",
+      "rgb(255, 255, 255)",
+      "rgb(250, 250, 250)",
+      "rgb(242, 242, 242)",
+      "rgb(239, 239, 239)",
+      "rgb(235, 235, 235)",
+      "rgb(230, 230, 230)",
+      "rgb(84, 84, 84)",
+      "rgb(102, 102, 102)",
+      "rgb(125, 125, 125)",
+      "rgb(128, 128, 128)",
+      "rgb(143, 143, 143)",
+      "rgb(168, 168, 168)",
+      "rgb(0, 112, 243)",
+      "rgb(0, 104, 214)",
+      "rgb(0, 98, 209)",
+      "rgb(82, 174, 255)",
+      "rgb(229, 72, 77)",
+      "rgb(203, 42, 47)",
+      "rgb(41, 122, 58)",
+      "rgb(57, 142, 74)",
+      "rgb(108, 218, 117)",
+      "rgb(6, 122, 110)",
+      "rgb(69, 222, 197)",
+      "rgb(255, 178, 36)",
+      "rgb(255, 153, 10)",
+      "rgb(120, 32, 188)",
+      "rgb(191, 137, 236)",
+      "rgb(189, 40, 100)",
+      "rgb(234, 62, 131)",
+      "rgba(0, 0, 0, 0.4)",
+      "rgba(0, 0, 0, 0.08)",
+      "rgba(0, 0, 0, 0.04)",
+      "rgba(0, 0, 0, 0.02)"
+    ],
+    "semantic": {
+      "background": "rgb(255, 255, 255)",
+      "foreground": "rgb(23, 23, 23)",
+      "primary": "rgb(0, 112, 243)",
+      "primaryHover": "rgb(0, 104, 214)",
+      "surface": "rgb(250, 250, 250)",
+      "surfaceElevated": "rgb(242, 242, 242)",
+      "border": "rgb(235, 235, 235)",
+      "borderSubtle": "rgb(239, 239, 239)",
+      "text": "rgb(23, 23, 23)",
+      "textMuted": "rgb(102, 102, 102)",
+      "textSubtle": "rgb(128, 128, 128)",
+      "error": "rgb(229, 72, 77)",
+      "errorDark": "rgb(203, 42, 47)",
+      "success": "rgb(41, 122, 58)",
+      "successLight": "rgb(108, 218, 117)",
+      "warning": "rgb(255, 178, 36)",
+      "warningDark": "rgb(255, 153, 10)",
+      "info": "rgb(82, 174, 255)",
+      "accent": "rgb(69, 222, 197)"
+    },
+    "scale": {
+      "gray": {
+        "50": "rgb(250, 250, 250)",
+        "100": "rgb(242, 242, 242)",
+        "200": "rgb(239, 239, 239)",
+        "300": "rgb(235, 235, 235)",
+        "400": "rgb(230, 230, 230)",
+        "500": "rgb(168, 168, 168)",
+        "600": "rgb(143, 143, 143)",
+        "700": "rgb(128, 128, 128)",
+        "800": "rgb(102, 102, 102)",
+        "900": "rgb(84, 84, 84)",
+        "950": "rgb(23, 23, 23)"
+      },
+      "blue": {
+        "50": "rgb(240, 251, 255)",
+        "100": "rgb(235, 245, 255)",
+        "200": "rgb(204, 230, 255)",
+        "500": "rgb(82, 174, 255)",
+        "600": "rgb(0, 112, 243)",
+        "700": "rgb(0, 104, 214)",
+        "800": "rgb(0, 98, 209)"
+      },
+      "red": {
+        "50": "rgb(255, 247, 245)",
+        "500": "rgb(229, 72, 77)",
+        "700": "rgb(203, 42, 47)"
+      },
+      "green": {
+        "50": "rgb(240, 255, 249)",
+        "500": "rgb(108, 218, 117)",
+        "600": "rgb(57, 142, 74)",
+        "700": "rgb(41, 122, 58)"
+      },
+      "orange": {
+        "50": "rgb(255, 250, 240)",
+        "500": "rgb(255, 178, 36)",
+        "600": "rgb(255, 153, 10)"
+      },
+      "purple": {
+        "500": "rgb(191, 137, 236)",
+        "700": "rgb(120, 32, 188)"
+      },
+      "pink": {
+        "500": "rgb(234, 62, 131)",
+        "700": "rgb(189, 40, 100)"
+      },
+      "cyan": {
+        "500": "rgb(69, 222, 197)",
+        "700": "rgb(6, 122, 110)"
+      }
+    }
+  },
+  "typography": {
+    "fontFamilies": [
+      "Geist, Arial, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "\"Geist Mono\", ui-monospace, SFMono-Regular, \"Roboto Mono\", Menlo, Monaco, \"Liberation Mono\", \"DejaVu Sans Mono\", \"Courier New\", monospace"
+    ],
+    "primary": "Geist",
+    "monospace": "Geist Mono",
+    "typeScale": [
+      { "name": "display-xl", "fontSize": "48px", "fontWeight": "600", "lineHeight": "56px", "letterSpacing": "-2.88px" },
+      { "name": "display-lg", "fontSize": "45px", "fontWeight": "600", "lineHeight": "45px", "letterSpacing": "-2.2px" },
+      { "name": "display-md", "fontSize": "40px", "fontWeight": "600", "lineHeight": "48px", "letterSpacing": "-2.4px" },
+      { "name": "heading-xl", "fontSize": "32px", "fontWeight": "600", "lineHeight": "40px", "letterSpacing": "-1.28px" },
+      { "name": "heading-lg", "fontSize": "30px", "fontWeight": "400", "lineHeight": "45px", "letterSpacing": "-1.2px" },
+      { "name": "heading-md", "fontSize": "24px", "fontWeight": "600", "lineHeight": "32px", "letterSpacing": "-0.96px" },
+      { "name": "heading-sm", "fontSize": "24px", "fontWeight": "500", "lineHeight": "32px", "letterSpacing": "-0.96px" },
+      { "name": "body-xl", "fontSize": "20px", "fontWeight": "400", "lineHeight": "36px", "letterSpacing": "normal" },
+      { "name": "body-lg", "fontSize": "18px", "fontWeight": "400", "lineHeight": "27.36px", "letterSpacing": "normal" },
+      { "name": "body-md", "fontSize": "16px", "fontWeight": "400", "lineHeight": "normal", "letterSpacing": "normal" },
+      { "name": "body-md-medium", "fontSize": "16px", "fontWeight": "500", "lineHeight": "24px", "letterSpacing": "normal" },
+      { "name": "body-md-semibold", "fontSize": "16px", "fontWeight": "600", "lineHeight": "24px", "letterSpacing": "-0.32px" },
+      { "name": "body-sm", "fontSize": "14px", "fontWeight": "400", "lineHeight": "normal", "letterSpacing": "normal" },
+      { "name": "body-sm-medium", "fontSize": "14px", "fontWeight": "500", "lineHeight": "normal", "letterSpacing": "normal" },
+      { "name": "caption", "fontSize": "13px", "fontWeight": "500", "lineHeight": "20px", "letterSpacing": "normal" },
+      { "name": "caption-sm", "fontSize": "12px", "fontWeight": "400", "lineHeight": "normal", "letterSpacing": "normal" },
+      { "name": "caption-sm-medium", "fontSize": "12px", "fontWeight": "500", "lineHeight": "16px", "letterSpacing": "normal" }
+    ]
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "scale": ["1px", "2px", "4px", "6px", "8px", "10px", "12px", "14px", "16px", "20px", "24px", "32px", "40px", "48px", "64px", "96px"],
+    "semantic": {
+      "space-1": "4px",
+      "space-2": "8px",
+      "space-3": "12px",
+      "space-4": "16px",
+      "space-5": "20px",
+      "space-6": "24px",
+      "space-8": "32px",
+      "space-10": "40px",
+      "space-12": "48px",
+      "space-16": "64px"
+    }
+  },
+  "effects": {
+    "shadows": [
+      { "name": "sm", "value": "rgba(0, 0, 0, 0.04) 0px 1px 2px 0px" },
+      { "name": "md", "value": "rgba(0, 0, 0, 0.04) 0px 2px 2px 0px" },
+      { "name": "lg", "value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.02) 0px 1px 1px 0px, rgba(0, 0, 0, 0.04) 0px 4px 8px -4px, rgba(0, 0, 0, 0.06) 0px 16px 24px -8px" },
+      { "name": "xl", "value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.02) 0px 1px 1px 0px, rgba(0, 0, 0, 0.04) 0px 8px 16px -4px, rgba(0, 0, 0, 0.06) 0px 24px 32px -8px" },
+      { "name": "border", "value": "rgb(235, 235, 235) 0px 0px 0px 1px" },
+      { "name": "border-subtle", "value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px" },
+      { "name": "card", "value": "rgb(235, 235, 235) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px" },
+      { "name": "inset", "value": "rgb(234, 234, 234) 0px -1px 0px 0px inset" }
+    ],
+    "borderRadii": [
+      { "name": "xs", "value": "2px" },
+      { "name": "sm", "value": "4px" },
+      { "name": "md", "value": "6px" },
+      { "name": "lg", "value": "8px" },
+      { "name": "xl", "value": "12px" },
+      { "name": "2xl", "value": "16px" },
+      { "name": "3xl", "value": "32px" },
+      { "name": "4xl", "value": "64px" },
+      { "name": "full", "value": "9999px" }
+    ]
+  }
+}
