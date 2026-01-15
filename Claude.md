@@ -841,6 +841,7 @@ const headers = {
 |-------|---------|-------------|
 | `planning-with-files` | Structured project planning | ALL projects, complex multi-step tasks |
 | `ui-ux-pro-max` | UI/UX design and implementation | Any frontend work, styling, layouts |
+| `react-best-practices` | React/Next.js performance optimization | ALL React work, code review, refactoring |
 | `agent-browser` | Browser testing and automation | ALL major feature testing |
 | *(custom skills)* | See `docs/skills-overview.md` | Document trigger conditions |
 
@@ -848,7 +849,7 @@ const headers = {
 
 | Category | Skills |
 |----------|--------|
-| **Frontend** | ui-ux-pro-max, react-spa, react-native, tailwind-v4 |
+| **Frontend** | ui-ux-pro-max, react-best-practices, react-spa, react-native, tailwind-v4 |
 | **Backend** | node-api, database, authentication |
 | **Web3/Crypto** | ethereum, solana, wallet-adapters, defi-protocols |
 | **Mobile** | react-native, expo, flutter |
@@ -857,10 +858,11 @@ const headers = {
 ### Quick Reference
 
 ```
-planning-with-files  → Use for ANY project, multi-step tasks, research
-ui-ux-pro-max        → Use for ANY frontend/UI work
-agent-browser        → Use for ANY browser testing
-Ralph Wiggum         → Use for COMPLEX debugging/issues
+planning-with-files   → Use for ANY project, multi-step tasks, research
+ui-ux-pro-max         → Use for ANY frontend/UI work
+react-best-practices  → Use for ANY React work (components, refactoring, review)
+agent-browser         → Use for ANY browser testing
+Ralph Wiggum          → Use for COMPLEX debugging/issues
 ```
 
 ### Skill Library Best Practices

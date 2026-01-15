@@ -22,6 +22,49 @@ Use the Skill tool to invoke [skill-name] before starting [task type]
 
 **Purpose:** Implements Manus-style file-based planning for complex tasks. Creates structured planning documents to maintain context across sessions.
 
+---
+
+### 3. react-best-practices
+
+**Invocation:** `react-best-practices`
+
+**Location:** `skills/react-best-practices/SKILL.md`
+
+**Purpose:** React and Next.js performance optimization guidelines from Vercel Engineering. Contains 40+ rules across 8 categories for optimal performance patterns.
+
+**When to Use:**
+- Writing new React components
+- Implementing data fetching (client or server-side)
+- Reviewing code for performance issues
+- Refactoring existing React code
+- Optimizing bundle size or load times
+- Any React-related work (including Alex's Projects)
+
+**Priority Categories:**
+
+| Priority | Category | Impact |
+|----------|----------|--------|
+| 1 | Eliminating Waterfalls | CRITICAL |
+| 2 | Bundle Size Optimization | CRITICAL |
+| 3 | Server-Side Performance | HIGH |
+| 4 | Client-Side Data Fetching | MEDIUM-HIGH |
+| 5 | Re-render Optimization | MEDIUM |
+| 6 | Rendering Performance | MEDIUM |
+| 7 | JavaScript Performance | LOW-MEDIUM |
+| 8 | Advanced Patterns | LOW |
+
+**Key Patterns:**
+- Use `Promise.all()` for parallel fetching
+- Avoid barrel file imports (import directly)
+- Use dynamic imports for heavy components
+- Use `React.cache()` for request deduplication
+- Use SWR/React Query for client-side fetching
+- Apply `startTransition` for non-urgent updates
+
+**Documentation:** See `skills/react-best-practices/SKILL.md` for full guide
+
+---
+
 **When to Use:**
 - Starting any new project (required for ALL projects)
 - Complex multi-step tasks (3+ steps)
