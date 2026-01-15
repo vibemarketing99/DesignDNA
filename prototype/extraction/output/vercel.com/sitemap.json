@@ -1,0 +1,51 @@
+{
+  "site": "vercel.com",
+  "extractedAt": "2026-01-15",
+  "navigation": {
+    "products": [
+      {"name": "AI Cloud", "url": "/ai", "category": "products"},
+      {"name": "AI Gateway", "url": "/ai-gateway", "category": "products"},
+      {"name": "Vercel Agent", "url": "/agent", "category": "products"},
+      {"name": "Sandbox", "url": "/sandbox", "category": "products"},
+      {"name": "Previews (CI/CD)", "url": "/products/previews", "category": "products"},
+      {"name": "Rendering", "url": "/products/rendering", "category": "products"},
+      {"name": "Fluid Compute", "url": "/fluid", "category": "products"},
+      {"name": "Observability", "url": "/products/observability", "category": "products"},
+      {"name": "Security", "url": "/security", "category": "products"},
+      {"name": "Bot Management", "url": "/security/bot-management", "category": "products"},
+      {"name": "BotID", "url": "/botid", "category": "products"},
+      {"name": "WAF", "url": "/security/web-application-firewall", "category": "products"}
+    ],
+    "solutions": [
+      {"name": "Next.js", "url": "/frameworks/nextjs", "category": "solutions"},
+      {"name": "Turborepo", "url": "/solutions/turborepo", "category": "solutions"},
+      {"name": "AI Apps", "url": "/solutions/ai-apps", "category": "solutions"},
+      {"name": "Composable Commerce", "url": "/solutions/composable-commerce", "category": "solutions"},
+      {"name": "Marketing Sites", "url": "/solutions/marketing-sites", "category": "solutions"},
+      {"name": "Multi-tenant SaaS", "url": "/solutions/multi-tenant-saas", "category": "solutions"},
+      {"name": "Web Apps", "url": "/solutions/web-apps", "category": "solutions"},
+      {"name": "Platform Engineering", "url": "/solutions/platform-engineering", "category": "solutions"},
+      {"name": "Design Engineering", "url": "/solutions/design-engineering", "category": "solutions"}
+    ],
+    "resources": [
+      {"name": "Docs", "url": "/docs", "category": "resources"},
+      {"name": "Academy", "url": "/academy", "category": "resources"},
+      {"name": "Knowledge Base", "url": "/kb", "category": "resources"},
+      {"name": "Templates", "url": "/templates", "category": "resources"},
+      {"name": "Marketplace", "url": "/marketplace", "category": "resources"},
+      {"name": "Integrations", "url": "/integrations", "category": "resources"},
+      {"name": "Blog", "url": "/blog", "category": "resources"},
+      {"name": "Changelog", "url": "/changelog", "category": "resources"}
+    ],
+    "company": [
+      {"name": "Home", "url": "/", "category": "company"},
+      {"name": "Enterprise", "url": "/enterprise", "category": "company"},
+      {"name": "Pricing", "url": "/pricing", "category": "company"},
+      {"name": "About", "url": "/about", "category": "company"},
+      {"name": "Customers", "url": "/customers", "category": "company"},
+      {"name": "Careers", "url": "/careers", "category": "company"},
+      {"name": "Contact", "url": "/contact", "category": "company"},
+      {"name": "Partners", "url": "/partners", "category": "company"}
+    ]
+  }
+}

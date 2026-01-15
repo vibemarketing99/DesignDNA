@@ -422,6 +422,8 @@ function initPageLightbox() {
     // Open lightbox on card click
     pageCards.forEach(card => {
         card.addEventListener('click', (e) => {
+            // Don't open lightbox if clicking action button
+            if (e.target.closest('.page-screenshot-actions')) return;
             e.preventDefault();
 
             // Get card info
@@ -429,14 +431,28 @@ function initPageLightbox() {
             const badge = card.querySelector('.page-type-badge');
             const badgeText = badge?.textContent || '';
             const badgeClass = badge?.className.replace('page-type-badge', '').trim() || '';
-            const preview = card.querySelector('.page-card-preview');
-            const previewStyle = preview ? window.getComputedStyle(preview).background : '';
+
+            // Get screenshot URL from data attribute (primary) or background style (fallback)
+            let imageUrl = card.dataset.screenshot || '';
+
+            if (!imageUrl) {
+                const preview = card.querySelector('.page-card-preview');
+                const bgStyle = preview?.style.backgroundImage || '';
+                const urlMatch = bgStyle.match(/url\(['"]?([^'"]+)['"]?\)/);
+                imageUrl = urlMatch ? urlMatch[1] : '';
+            }
 
             // Set lightbox content
             lightboxTitle.textContent = title;
             lightboxBadge.textContent = badgeText;
             lightboxBadge.className = 'lightbox-badge ' + badgeClass;
-            lightboxPreview.style.background = previewStyle;
+
+            // Use img tag for full scrollable image
+            if (imageUrl) {
+                lightboxPreview.innerHTML = `<img src="${imageUrl}" alt="${title}" style="width: 100%; height: auto; display: block;">`;
+            } else {
+                lightboxPreview.innerHTML = '<div style="padding: 60px; text-align: center; color: var(--color-text-tertiary);">No screenshot available</div>';
+            }
 
             // Open lightbox
             lightbox.classList.add('active');
@@ -684,6 +700,113 @@ document.querySelectorAll('.site-action-option').forEach(option => {
                 break;
         }
     });
+});
+
+// ===================================
+// Page Screenshot Actions & Lightbox
+// ===================================
+
+// Page screenshot action buttons
+const pageActionBtns = document.querySelectorAll('.page-action-btn');
+const pageActionsMenus = document.querySelectorAll('.page-actions-menu');
+
+pageActionBtns.forEach((btn, index) => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Close all other dropdowns
+        pageActionsMenus.forEach((menu, menuIndex) => {
+            if (menuIndex !== index) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Toggle current dropdown
+        pageActionsMenus[index]?.classList.toggle('active');
+    });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.page-screenshot-actions')) {
+        pageActionsMenus.forEach(menu => menu.classList.remove('active'));
+    }
+});
+
+// Handle page action option clicks
+document.querySelectorAll('.page-action-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const action = option.dataset.action;
+        const pageCard = option.closest('.page-gallery-card');
+        const pageName = pageCard?.dataset.pageName || 'Page';
+
+        option.closest('.page-actions-menu')?.classList.remove('active');
+
+        switch(action) {
+            case 'collection':
+                showToast(`Added ${pageName} to collection`);
+                break;
+            case 'download':
+                showToast(`Downloading ${pageName} PNG...`);
+                setTimeout(() => {
+                    showToast(`${pageName} PNG downloaded`);
+                }, 1500);
+                break;
+        }
+    });
+});
+
+// Page screenshot lightbox expansion
+const pageLightbox = document.getElementById('page-lightbox');
+const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxPreview = document.querySelector('.lightbox-preview');
+const lightboxTitle = document.querySelector('.lightbox-title');
+const lightboxBadge = document.querySelector('.lightbox-badge');
+
+// Click on page preview to expand
+document.querySelectorAll('.page-card-preview').forEach(preview => {
+    preview.addEventListener('click', (e) => {
+        // Don't open if clicking on action button or menu
+        if (e.target.closest('.page-screenshot-actions')) {
+            return;
+        }
+
+        const pageCard = preview.closest('.page-gallery-card');
+        const pageName = pageCard?.dataset.pageName || 'Page';
+        const pageBadge = pageCard?.dataset.pageBadge || '';
+        const pageType = pageCard?.dataset.type || '';
+
+        // Set lightbox content
+        if (lightboxTitle) lightboxTitle.textContent = pageName;
+        if (lightboxBadge) {
+            lightboxBadge.textContent = pageBadge;
+            lightboxBadge.className = 'lightbox-badge page-type-badge ' + pageType;
+        }
+
+        // Show lightbox
+        pageLightbox?.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Close lightbox
+function closeLightbox() {
+    pageLightbox?.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+lightboxClose?.addEventListener('click', closeLightbox);
+document.querySelector('.lightbox-overlay')?.addEventListener('click', closeLightbox);
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && pageLightbox?.classList.contains('active')) {
+        closeLightbox();
+    }
 });
 
 // ===================================

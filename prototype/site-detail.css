@@ -1479,7 +1479,7 @@ button.section-link:hover svg {
     background: var(--color-bg-elevated);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    overflow: hidden;
+    overflow: visible;
     transition: all var(--transition-normal);
     text-decoration: none;
     color: inherit;
@@ -1497,6 +1497,97 @@ button.section-link:hover svg {
     aspect-ratio: 4 / 3;
     background: linear-gradient(180deg, #635bff 0%, #0a2540 100%);
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    cursor: zoom-in;
+    transition: all var(--transition-fast);
+    overflow: hidden;
+}
+
+.page-card-preview:hover {
+    filter: brightness(1.1);
+}
+
+/* Page Screenshot Actions */
+.page-screenshot-actions {
+    position: relative;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.page-action-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--color-text-tertiary);
+}
+
+.page-action-btn:hover {
+    background: var(--color-bg-hover);
+    border-color: var(--color-border-strong);
+    color: var(--color-text-primary);
+}
+
+.page-action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.page-actions-menu {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    min-width: 200px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: var(--space-2);
+    display: none;
+    z-index: 1000;
+    animation: fadeInDown 0.2s ease;
+}
+
+.page-actions-menu.active {
+    display: block;
+}
+
+.page-action-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.page-action-option:hover {
+    background: var(--color-bg-hover);
+    color: var(--color-accent-hover);
+}
+
+.page-action-option svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+}
+
+.page-action-option:hover svg {
+    color: var(--color-accent);
 }
 
 
@@ -1510,11 +1601,13 @@ button.section-link:hover svg {
     align-items: center;
     gap: var(--space-2);
     margin-bottom: var(--space-3);
+    width: 100%;
 }
 
 .page-card-header h3 {
     font-size: var(--font-size-base);
     font-weight: 600;
+    flex-shrink: 0;
 }
 
 /* Page Type Badges */
@@ -1594,6 +1687,7 @@ button.section-link:hover svg {
     flex-direction: column;
     transform: scale(0.95);
     transition: transform var(--transition-normal);
+    overflow: hidden;
 }
 
 .page-lightbox.active .lightbox-content {
@@ -1628,9 +1722,17 @@ button.section-link:hover svg {
 }
 
 .lightbox-preview {
-    aspect-ratio: 16 / 10;
-    background: linear-gradient(180deg, #635bff 0%, #0a2540 100%);
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    background: var(--color-bg-subtle);
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.lightbox-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .lightbox-info {

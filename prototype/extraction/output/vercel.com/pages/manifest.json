@@ -1,0 +1,54 @@
+{
+  "site": "vercel.com",
+  "extracted": "2026-01-15",
+  "pages": [
+    {
+      "name": "Homepage",
+      "type": "home",
+      "url": "/",
+      "screenshot": "vercel-homepage.png",
+      "featured": true,
+      "sections": 8
+    },
+    {
+      "name": "Pricing",
+      "type": "pricing",
+      "url": "/pricing",
+      "screenshot": "vercel-pricing.png",
+      "featured": true,
+      "sections": 6
+    },
+    {
+      "name": "Templates",
+      "type": "product",
+      "url": "/templates",
+      "screenshot": "vercel-templates.png",
+      "featured": false,
+      "sections": 4
+    },
+    {
+      "name": "Enterprise",
+      "type": "product",
+      "url": "/enterprise",
+      "screenshot": "vercel-enterprise.png",
+      "featured": true,
+      "sections": 7
+    },
+    {
+      "name": "Documentation",
+      "type": "docs",
+      "url": "/docs",
+      "screenshot": "vercel-docs.png",
+      "featured": false,
+      "sections": 3
+    },
+    {
+      "name": "AI",
+      "type": "product",
+      "url": "/ai",
+      "screenshot": "vercel-ai.png",
+      "featured": true,
+      "sections": 5
+    }
+  ]
+}
