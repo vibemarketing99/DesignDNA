@@ -209,23 +209,37 @@ Three comprehensive templates are available in this repository:
 
 ### GitHub Integration
 
-**ALWAYS commit and push major changes and decisions to GitHub.**
+**Push only for MAJOR changes - don't push too frequently.**
 
-- After completing any major feature, architectural decision, or significant change, create a commit with a clear summary
-- The commit message should explain WHAT changed and WHY
-- Push changes to GitHub to maintain backup and history
-- Major changes include:
-  - New features or components
-  - Architectural decisions
-  - Configuration changes
-  - Dependency updates
-  - Bug fixes that affect core functionality
+**When to Push:**
+- ✅ New feature complete
+- ✅ Major milestone reached
+- ✅ Architectural decisions made
+- ✅ End of significant work session
+- ✅ Before switching to different project
 
-**When starting a new project, ALWAYS ask which GitHub repository to connect to.**
+**When NOT to Push:**
+- ❌ Small fixes or tweaks
+- ❌ Work in progress
+- ❌ Minor documentation updates
+- ❌ After every single change
 
-- Before beginning any development work on a new project, ask the user for the GitHub repository URL
-- Initialize git connection early to ensure all work is tracked from the start
-- Verify the remote is properly configured before proceeding
+**Commit Message Format:**
+```
+[TYPE] Brief description
+
+Types: Add, Update, Fix, Remove, Refactor
+```
+
+**ALWAYS log changes to CHANGELOG.md:**
+- Record every push with date, description, and commit hash
+- Track project evolution over time
+- See `CHANGELOG.md` for format
+
+**When starting a new project:**
+- Ask which GitHub repository to connect to
+- Initialize git connection early
+- Verify remote is configured
 
 ### Project Structure
 
