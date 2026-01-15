@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Component Specification",
+  "description": "Detailed specification for a UI component",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Component name (e.g., 'Primary Button', 'Text Input')"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["button", "input", "card", "navigation", "modal", "dropdown", "table", "list", "badge", "avatar", "alert", "other"]
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "description": "Different variants (primary, secondary, ghost, etc.)"
+    },
+    "sizes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["xs", "sm", "md", "lg", "xl"]
+      }
+    },
+    "states": {
+      "type": "object",
+      "properties": {
+        "default": { "$ref": "#/definitions/stateSpec" },
+        "hover": { "$ref": "#/definitions/stateSpec" },
+        "focus": { "$ref": "#/definitions/stateSpec" },
+        "active": { "$ref": "#/definitions/stateSpec" },
+        "disabled": { "$ref": "#/definitions/stateSpec" },
+        "loading": { "$ref": "#/definitions/stateSpec" }
+      }
+    },
+    "anatomy": {
+      "type": "object",
+      "description": "Component parts breakdown",
+      "properties": {
+        "parts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "required": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "screenshots": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Paths to state screenshots"
+    }
+  },
+  "definitions": {
+    "stateSpec": {
+      "type": "object",
+      "properties": {
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "width": { "type": "string" },
+            "height": { "type": "string" },
+            "padding": { "type": "string" },
+            "margin": { "type": "string" }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "properties": {
+            "fontFamily": { "type": "string" },
+            "fontSize": { "type": "string" },
+            "fontWeight": { "type": "string" },
+            "lineHeight": { "type": "string" },
+            "color": { "type": "string" }
+          }
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "color": { "type": "string" },
+            "image": { "type": "string" },
+            "gradient": { "type": "string" }
+          }
+        },
+        "border": {
+          "type": "object",
+          "properties": {
+            "width": { "type": "string" },
+            "style": { "type": "string" },
+            "color": { "type": "string" },
+            "radius": { "type": "string" }
+          }
+        },
+        "effects": {
+          "type": "object",
+          "properties": {
+            "boxShadow": { "type": "string" },
+            "opacity": { "type": "string" },
+            "transform": { "type": "string" },
+            "transition": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

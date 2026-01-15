@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Component - Stripe | DesignDNA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="component-detail.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+                    <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#logo-gradient)"/>
+                    <path d="M10 16L14 12L18 16L22 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 20L14 16L18 20L22 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0" y1="0" x2="32" y2="32">
+                            <stop offset="0%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">DesignDNA</span>
+            </a>
+
+            <div class="nav-search">
+                <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+                </svg>
+                <input type="text" placeholder="Search sites, components, flows..." class="search-input" id="search-input">
+                <kbd class="search-shortcut">⌘K</kbd>
+            </div>
+
+            <div class="nav-links">
+                <a href="library.html" class="nav-link">Library</a>
+                <a href="#" class="nav-link">Flows</a>
+                <a href="#" class="nav-link">Pricing</a>
+                <button class="btn btn-ghost" id="theme-toggle">
+                    <svg class="icon-sun" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zM10 15a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zM10 7a3 3 0 100 6 3 3 0 000-6zM15.657 5.404a.75.75 0 10-1.06-1.06l-1.061 1.06a.75.75 0 001.06 1.061l1.06-1.06zM6.464 14.596a.75.75 0 10-1.06-1.06l-1.06 1.06a.75.75 0 001.06 1.06l1.06-1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zM14.596 15.657a.75.75 0 001.06-1.06l-1.06-1.061a.75.75 0 10-1.061 1.06l1.06 1.06zM5.404 6.464a.75.75 0 001.06-1.06l-1.06-1.06a.75.75 0 10-1.061 1.06l1.06 1.06z"/>
+                    </svg>
+                </button>
+                <a href="#" class="btn btn-primary">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-sep">/</span>
+            <a href="site-detail.html">Stripe</a>
+            <span class="breadcrumb-sep">/</span>
+            <a href="site-detail.html#components">Components</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Button</span>
+        </div>
+
+        <!-- Component Header -->
+        <header class="component-header">
+            <div class="component-header-left">
+                <div class="component-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="8" width="18" height="8" rx="4"/>
+                    </svg>
+                </div>
+                <div class="component-info">
+                    <h1>Button</h1>
+                    <p class="component-meta">Interactive • 6 variants • 4 states</p>
+                </div>
+            </div>
+            <div class="component-header-actions">
+                <button class="btn btn-ghost" id="save-component">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Save
+                </button>
+                <button class="btn btn-ghost" id="compare-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    Compare
+                </button>
+            </div>
+        </header>
+
+        <div class="component-layout">
+            <!-- Main Preview Area -->
+            <div class="component-main">
+                <!-- Live Preview -->
+                <section class="component-preview-section">
+                    <div class="section-header">
+                        <h2>Live Preview</h2>
+                        <div class="preview-controls">
+                            <div class="bg-toggle">
+                                <button class="bg-btn active" data-bg="dark">Dark</button>
+                                <button class="bg-btn" data-bg="light">Light</button>
+                                <button class="bg-btn" data-bg="gradient">Gradient</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-canvas" data-bg="dark">
+                        <div class="preview-stage">
+                            <button class="stripe-btn stripe-btn-primary" id="live-preview-btn">
+                                Get started
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="preview-dimensions">
+                            <span>Width: 140px</span>
+                            <span>Height: 44px</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- All Variants -->
+                <section class="variants-section">
+                    <div class="section-header">
+                        <h2>Variants</h2>
+                        <span class="variant-count">6 variants</span>
+                    </div>
+                    <div class="variants-grid">
+                        <div class="variant-card active" data-variant="primary">
+                            <div class="variant-preview">
+                                <button class="stripe-btn stripe-btn-primary">Primary</button>
+                            </div>
+                            <div class="variant-info">
+                                <span class="variant-name">Primary</span>
+                                <span class="variant-usage">Main CTA</span>
+                            </div>
+                        </div>
+                        <div class="variant-card" data-variant="secondary">
+                            <div class="variant-preview">
+                                <button class="stripe-btn stripe-btn-secondary">Secondary</button>
+                            </div>
+                            <div class="variant-info">
+                                <span class="variant-name">Secondary</span>
+                                <span class="variant-usage">Alt actions</span>
+                            </div>
+                        </div>
+                        <div class="variant-card" data-variant="outline">
+                            <div class="variant-preview">
+                                <button class="stripe-btn stripe-btn-outline">Outline</button>
+                            </div>
+                            <div class="variant-info">
+                                <span class="variant-name">Outline</span>
+                                <span class="variant-usage">Tertiary</span>
+                            </div>
+                        </div>
+                        <div class="variant-card" data-variant="ghost">
+                            <div class="variant-preview">
+                                <button class="stripe-btn stripe-btn-ghost">Ghost</button>
+                            </div>
+                            <div class="variant-info">
+                                <span class="variant-name">Ghost</span>
+                                <span class="variant-usage">Subtle</span>
+                            </div>
+                        </div>
+                        <div class="variant-card" data-variant="destructive">
+                            <div class="variant-preview">
+                                <button class="stripe-btn stripe-btn-destructive">Delete</button>
+                            </div>
+                            <div class="variant-info">
+                                <span class="variant-name">Destructive</span>
+                                <span class="variant-usage">Danger</span>
+                            </div>
+                        </div>
+                        <div class="variant-card" data-variant="link">
+                            <div class="variant-preview">
+                                <button class="stripe-btn stripe-btn-link">Learn more →</button>
+                            </div>
+                            <div class="variant-info">
+                                <span class="variant-name">Link</span>
+                                <span class="variant-usage">Navigation</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- States -->
+                <section class="states-section">
+                    <div class="section-header">
+                        <h2>States</h2>
+                        <span class="state-count">4 states</span>
+                    </div>
+                    <div class="states-row">
+                        <div class="state-item">
+                            <div class="state-preview">
+                                <button class="stripe-btn stripe-btn-primary">Default</button>
+                            </div>
+                            <span class="state-label">Default</span>
+                        </div>
+                        <div class="state-item">
+                            <div class="state-preview">
+                                <button class="stripe-btn stripe-btn-primary hover">Hover</button>
+                            </div>
+                            <span class="state-label">Hover</span>
+                        </div>
+                        <div class="state-item">
+                            <div class="state-preview">
+                                <button class="stripe-btn stripe-btn-primary active">Active</button>
+                            </div>
+                            <span class="state-label">Active</span>
+                        </div>
+                        <div class="state-item">
+                            <div class="state-preview">
+                                <button class="stripe-btn stripe-btn-primary disabled" disabled>Disabled</button>
+                            </div>
+                            <span class="state-label">Disabled</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sizes -->
+                <section class="sizes-section">
+                    <div class="section-header">
+                        <h2>Sizes</h2>
+                        <span class="size-count">3 sizes</span>
+                    </div>
+                    <div class="sizes-row">
+                        <div class="size-item">
+                            <div class="size-preview">
+                                <button class="stripe-btn stripe-btn-primary stripe-btn-sm">Small</button>
+                            </div>
+                            <div class="size-specs">
+                                <span class="size-label">Small</span>
+                                <span class="size-dims">H: 32px • P: 12px 16px</span>
+                            </div>
+                        </div>
+                        <div class="size-item">
+                            <div class="size-preview">
+                                <button class="stripe-btn stripe-btn-primary">Medium</button>
+                            </div>
+                            <div class="size-specs">
+                                <span class="size-label">Medium</span>
+                                <span class="size-dims">H: 44px • P: 12px 24px</span>
+                            </div>
+                        </div>
+                        <div class="size-item">
+                            <div class="size-preview">
+                                <button class="stripe-btn stripe-btn-primary stripe-btn-lg">Large</button>
+                            </div>
+                            <div class="size-specs">
+                                <span class="size-label">Large</span>
+                                <span class="size-dims">H: 52px • P: 16px 32px</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar - Specs & Export -->
+            <aside class="component-sidebar">
+                <!-- Quick Export -->
+                <section class="sidebar-section export-section">
+                    <h3>Export Component</h3>
+                    <div class="export-tabs">
+                        <button class="export-tab active" data-export="react">React</button>
+                        <button class="export-tab" data-export="html">HTML</button>
+                        <button class="export-tab" data-export="figma">Figma</button>
+                    </div>
+                    <div class="code-preview" id="code-preview">
+                        <pre><code class="language-jsx"><span class="code-keyword">import</span> { Button } <span class="code-keyword">from</span> <span class="code-string">'./components/Button'</span>
+
+<span class="code-comment">// Primary button</span>
+<span class="code-tag">&lt;Button</span>
+  <span class="code-attr">variant</span>=<span class="code-string">"primary"</span>
+  <span class="code-attr">size</span>=<span class="code-string">"md"</span>
+  <span class="code-attr">rightIcon</span>={<span class="code-tag">&lt;ArrowRight /&gt;</span>}
+<span class="code-tag">&gt;</span>
+  Get started
+<span class="code-tag">&lt;/Button&gt;</span></code></pre>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-primary btn-full" id="copy-code">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                            Copy Code
+                        </button>
+                        <button class="btn btn-secondary btn-full" id="download-component">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download Files
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Design Specs -->
+                <section class="sidebar-section specs-section">
+                    <h3>Design Specs</h3>
+                    <div class="specs-list">
+                        <div class="spec-group">
+                            <h4>Typography</h4>
+                            <div class="spec-row">
+                                <span class="spec-label">Font</span>
+                                <span class="spec-value">Inter</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">600 (Semi Bold)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Size</span>
+                                <span class="spec-value">15px / 0.9375rem</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Line Height</span>
+                                <span class="spec-value">1.33</span>
+                            </div>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Colors</h4>
+                            <div class="spec-row">
+                                <span class="spec-label">Background</span>
+                                <div class="spec-color">
+                                    <span class="color-swatch" style="background: #635bff"></span>
+                                    <span class="spec-value">#635BFF</span>
+                                </div>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Text</span>
+                                <div class="spec-color">
+                                    <span class="color-swatch" style="background: #ffffff"></span>
+                                    <span class="spec-value">#FFFFFF</span>
+                                </div>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Hover</span>
+                                <div class="spec-color">
+                                    <span class="color-swatch" style="background: #7a73ff"></span>
+                                    <span class="spec-value">#7A73FF</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Spacing</h4>
+                            <div class="spec-row">
+                                <span class="spec-label">Padding X</span>
+                                <span class="spec-value">24px</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Padding Y</span>
+                                <span class="spec-value">12px</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Gap</span>
+                                <span class="spec-value">8px</span>
+                            </div>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Effects</h4>
+                            <div class="spec-row">
+                                <span class="spec-label">Border Radius</span>
+                                <span class="spec-value">8px</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Shadow</span>
+                                <span class="spec-value">0 4px 6px rgba(0,0,0,0.1)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Transition</span>
+                                <span class="spec-value">150ms ease</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Context -->
+                <section class="sidebar-section ai-section">
+                    <h3>AI-Ready Context</h3>
+                    <p class="ai-description">Copy this context to help AI tools understand and recreate this component accurately.</p>
+                    <button class="btn btn-ghost btn-full" id="copy-ai-context">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        Copy Reverse Prompt
+                    </button>
+                </section>
+
+                <!-- Related Components -->
+                <section class="sidebar-section related-section">
+                    <h3>Related Components</h3>
+                    <div class="related-list">
+                        <a href="#" class="related-item">
+                            <span class="related-icon">◻</span>
+                            <span class="related-name">Icon Button</span>
+                        </a>
+                        <a href="#" class="related-item">
+                            <span class="related-icon">▢</span>
+                            <span class="related-name">Button Group</span>
+                        </a>
+                        <a href="#" class="related-item">
+                            <span class="related-icon">◈</span>
+                            <span class="related-name">Dropdown Button</span>
+                        </a>
+                        <a href="#" class="related-item">
+                            <span class="related-icon">⟳</span>
+                            <span class="related-name">Loading Button</span>
+                        </a>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-overlay"></div>
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" id="search-modal-input" placeholder="Search components, sites, colors...">
+                <kbd>ESC</kbd>
+            </div>
+            <div class="search-modal-body">
+                <div class="search-section">
+                    <h3>Quick Actions</h3>
+                    <div class="search-results">
+                        <a href="#" class="search-result">
+                            <span class="result-icon">⬇</span>
+                            <span class="result-text">Export all Stripe components</span>
+                        </a>
+                        <a href="#" class="search-result">
+                            <span class="result-icon">◇</span>
+                            <span class="result-text">View Stripe design system</span>
+                        </a>
+                        <a href="#" class="search-result">
+                            <span class="result-icon">⊞</span>
+                            <span class="result-text">Compare with Linear buttons</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script src="component-detail.js"></script>
+</body>
+</html>

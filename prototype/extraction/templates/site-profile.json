@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DesignDNA Site Profile",
+  "description": "Complete design extraction profile for a website",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "name": { "type": "string" },
+        "extractedAt": { "type": "string", "format": "date-time" },
+        "version": { "type": "string" }
+      },
+      "required": ["url", "extractedAt"]
+    },
+    "tokens": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string" },
+            "secondary": { "type": "string" },
+            "accent": { "type": "string" },
+            "background": { "type": "string" },
+            "surface": { "type": "string" },
+            "text": { "type": "string" },
+            "textMuted": { "type": "string" },
+            "border": { "type": "string" },
+            "error": { "type": "string" },
+            "warning": { "type": "string" },
+            "success": { "type": "string" },
+            "raw": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "properties": {
+            "fontFamily": {
+              "type": "object",
+              "properties": {
+                "heading": { "type": "string" },
+                "body": { "type": "string" },
+                "mono": { "type": "string" }
+              }
+            },
+            "typeScale": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "fontSize": { "type": "string" },
+                  "lineHeight": { "type": "string" },
+                  "fontWeight": { "type": "string" },
+                  "letterSpacing": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "spacing": {
+          "type": "object",
+          "properties": {
+            "baseUnit": { "type": "number" },
+            "scale": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "effects": {
+          "type": "object",
+          "properties": {
+            "shadows": { "type": "array", "items": { "type": "string" } },
+            "borderRadii": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "properties": {
+        "buttons": { "type": "array" },
+        "inputs": { "type": "array" },
+        "cards": { "type": "array" },
+        "navigation": { "type": "array" }
+      }
+    },
+    "screenshots": {
+      "type": "object",
+      "properties": {
+        "full": {
+          "type": "object",
+          "properties": {
+            "light": { "type": "string" },
+            "dark": { "type": "string" }
+          }
+        },
+        "responsive": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "sections": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
