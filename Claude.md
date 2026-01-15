@@ -2,6 +2,31 @@
 
 This file contains global rules and guidelines that Claude must follow when building products in this repository.
 
+---
+
+## 🎯 PM Agent - Top-Level Orchestrator
+
+**For any project work, invoke the PM Agent first.**
+
+The PM Agent (`agents/pm-agent/PM.md`) orchestrates all projects by:
+- Breaking inputs into detailed milestones, phases, tasks, and steps
+- Discovering and creating skills as needed
+- Previewing and asking permission before each task
+- Testing with agent-browser after major features
+- Using Ralph Wiggum plugin for complex issues
+- Coordinating execution while user approves
+
+**PM Agent Workflow:**
+```
+INPUT → EXPAND → PLAN → SKILL-UP → EXECUTE → TEST → REVIEW → ITERATE
+```
+
+**Key Principle:** PM coordinates, user executes (with approval at each task).
+
+See `agents/pm-agent/PM.md` for complete documentation.
+
+---
+
 ## Critical Requirements
 
 ### Frontend Development
@@ -802,27 +827,49 @@ const headers = {
 
 **Full documentation:** See `docs/skills-overview.md` for complete skill reference.
 
+**PM Agent handles skill discovery** - See `agents/pm-agent/workflows/skill-discovery.md`
+
+### Skill Discovery Priority
+
+1. **Local Skills** - Check `ekmaster/skills/`, `.claude/skills/`
+2. **skillsmp.com** - Search community skills at https://skillsmp.com/
+3. **Auto-Create** - Build custom skill if nothing suitable exists
+
 ### Available Skills
 
 | Skill | Purpose | When to Use |
 |-------|---------|-------------|
 | `planning-with-files` | Structured project planning | ALL projects, complex multi-step tasks |
 | `ui-ux-pro-max` | UI/UX design and implementation | Any frontend work, styling, layouts |
+| `agent-browser` | Browser testing and automation | ALL major feature testing |
 | *(custom skills)* | See `docs/skills-overview.md` | Document trigger conditions |
+
+### Full Stack Skill Categories
+
+| Category | Skills |
+|----------|--------|
+| **Frontend** | ui-ux-pro-max, react-spa, react-native, tailwind-v4 |
+| **Backend** | node-api, database, authentication |
+| **Web3/Crypto** | ethereum, solana, wallet-adapters, defi-protocols |
+| **Mobile** | react-native, expo, flutter |
+| **Testing** | agent-browser, e2e-testing |
 
 ### Quick Reference
 
 ```
 planning-with-files  → Use for ANY project, multi-step tasks, research
 ui-ux-pro-max        → Use for ANY frontend/UI work
+agent-browser        → Use for ANY browser testing
+Ralph Wiggum         → Use for COMPLEX debugging/issues
 ```
 
 ### Skill Library Best Practices
 
+- **PM Agent discovers skills** - Let PM handle skill discovery for projects
 - **Document new skills:** Add to `docs/skills-overview.md`
 - **Describe trigger conditions:** Make it clear when each skill should be invoked
-- **Review regularly:** Periodically assess if existing skills need updates
-- **Share learnings:** Document what works well and what doesn't in skill design
+- **Search skillsmp.com first:** Before creating, check if community has a solution
+- **Create if not good enough:** Don't settle for poor-quality skills
 - **Start small:** Create focused, single-purpose skills rather than monolithic ones
 
 ## Best Practices
