@@ -4,6 +4,32 @@ All notable changes to EK Master HQ are documented here.
 
 ---
 
+## [2026-01-16] - Authentication & Multi-page Crawling
+
+**Commit:** `cf6a003`
+
+**Changes:**
+- Added authentication support to extraction system
+  - `--login` flag for interactive browser login
+  - `--auth-state <file>` to load saved sessions
+  - `--save-auth <file>` to save session after login
+- Added multi-page crawling for dashboards
+  - `--crawl` flag to enable page discovery
+  - `--max-pages <n>` to limit crawl depth
+- Added login detection (redirects, 404s on protected URLs, login forms)
+- Created At a Glance overview cards for site-detail-3
+- Fixed color swatch CSS specificity bug in Design System tab
+- Captured 8 Vercel authenticated dashboard pages as proof of concept
+
+**Files:**
+- `prototype/extraction/scripts/lib/auth.sh` - Authentication helper
+- `prototype/extraction/scripts/lib/crawl.sh` - Multi-page crawler
+- `prototype/extraction/scripts/extract.sh` - Updated with auth flags
+- `prototype/site-detail-3.html/css` - At a Glance cards
+- `prototype/extraction/output/vercel-dashboard/` - Auth crawl results
+
+---
+
 ## [2026-01-16] - Category Filtering & Screenshot Lightbox
 
 **Commit:** `a85b312`
