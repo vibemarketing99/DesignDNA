@@ -9,6 +9,15 @@
 #   --skip-sections      Skip section screenshots
 #   --skip-components    Skip component capture
 #   --phases <list>      Run only specific phases (comma-separated: recon,tokens,sections,components)
+#
+# Authentication:
+#   --auth-state <file>  Load saved browser session state for authenticated pages
+#   --login              Interactive login mode - opens browser for manual login
+#   --save-auth <file>   Save session state after login (default: ./auth-state.json)
+#
+# Multi-page Crawling:
+#   --crawl              Crawl and capture all pages within the domain
+#   --max-pages <n>      Maximum pages to crawl (default: 50)
 
 set -e
 
@@ -29,6 +38,20 @@ SKIP_RECON=false
 SKIP_TOKENS=false
 SKIP_SECTIONS=false
 SKIP_COMPONENTS=false
+
+# Authentication settings
+AUTH_STATE=""
+LOGIN_MODE=false
+SAVE_AUTH=""
+
+# Crawl settings
+CRAWL_MODE=false
+MAX_PAGES=50
+
+# Source auth helper
+if [ -f "$LIB_DIR/auth.sh" ]; then
+    source "$LIB_DIR/auth.sh"
+fi
 
 # Helper functions
 log_info() { echo -e "${BLUE}[INFO]${NC} $1"; }
@@ -56,9 +79,22 @@ print_usage() {
     echo "  --skip-components    Skip component capture"
     echo "  --phases <list>      Run only specific phases"
     echo ""
-    echo "Example:"
+    echo "Authentication:"
+    echo "  --auth-state <file>  Load saved browser session state"
+    echo "  --login              Interactive login mode (opens browser)"
+    echo "  --save-auth <file>   Save session after login"
+    echo ""
+    echo "Multi-page Crawling:"
+    echo "  --crawl              Crawl all pages within the domain"
+    echo "  --max-pages <n>      Maximum pages to crawl (default: 50)"
+    echo ""
+    echo "Examples:"
     echo "  $0 https://linear.app"
     echo "  $0 https://stripe.com --phases tokens,sections"
+    echo ""
+    echo "  # For authenticated dashboard crawling:"
+    echo "  $0 https://app.linear.app --login --save-auth linear-auth.json --crawl"
+    echo "  $0 https://app.linear.app --auth-state linear-auth.json --crawl --max-pages 100"
 }
 
 # Parse URL to create site name
@@ -137,6 +173,26 @@ parse_args() {
                 done
                 shift 2
                 ;;
+            --auth-state)
+                AUTH_STATE="$2"
+                shift 2
+                ;;
+            --login)
+                LOGIN_MODE=true
+                shift
+                ;;
+            --save-auth)
+                SAVE_AUTH="$2"
+                shift 2
+                ;;
+            --crawl)
+                CRAWL_MODE=true
+                shift
+                ;;
+            --max-pages)
+                MAX_PAGES="$2"
+                shift 2
+                ;;
             -h|--help)
                 print_usage
                 exit 0
@@ -160,6 +216,98 @@ setup_output_dir() {
     log_info "Output directory: $OUTPUT_DIR"
 }
 
+# Handle authentication before extraction
+handle_authentication() {
+    log_info "Setting up authentication..."
+
+    # If login mode is enabled, start interactive login first
+    if [ "$LOGIN_MODE" = true ]; then
+        log_info "Interactive login mode enabled"
+
+        # Set default save path if not specified
+        if [ -z "$SAVE_AUTH" ]; then
+            SAVE_AUTH="$OUTPUT_DIR/auth-state.json"
+        fi
+
+        if type interactive_login &>/dev/null; then
+            interactive_login "$URL" "$SAVE_AUTH"
+        else
+            log_warning "auth.sh not loaded, using manual approach"
+            log_info "Opening browser for manual login..."
+            $AGENT_BROWSER close 2>/dev/null || true
+            $AGENT_BROWSER --headed open "$URL"
+            echo ""
+            echo -e "${YELLOW}Please log in to the site in the browser window.${NC}"
+            echo -e "${YELLOW}Press ENTER when you have completed the login...${NC}"
+            read -r
+            # Save state
+            mkdir -p "$(dirname "$SAVE_AUTH")"
+            $AGENT_BROWSER state save "$SAVE_AUTH" 2>/dev/null
+            log_success "Auth state saved to: $SAVE_AUTH"
+            $AGENT_BROWSER close 2>/dev/null || true
+        fi
+        return
+    fi
+
+    # If auth state file provided, load it
+    if [ -n "$AUTH_STATE" ]; then
+        if [ -f "$AUTH_STATE" ]; then
+            if type load_auth_state &>/dev/null; then
+                load_auth_state "$AUTH_STATE"
+            else
+                log_info "Loading auth state from: $AUTH_STATE"
+                $AGENT_BROWSER state load "$AUTH_STATE" 2>/dev/null
+            fi
+        else
+            log_error "Auth state file not found: $AUTH_STATE"
+            exit 1
+        fi
+    fi
+}
+
+# Check if page requires authentication and handle it
+check_page_auth() {
+    local url="$1"
+
+    # Skip if auth helper not available
+    if ! type detect_auth_required &>/dev/null; then
+        return 0
+    fi
+
+    local auth_reason
+    auth_reason=$(detect_auth_required "$url")
+
+    if [ -n "$auth_reason" ]; then
+        log_warning "Authentication may be required (reason: $auth_reason)"
+
+        # Use the auth helper's prompt
+        eval "$(prompt_auth_action "$auth_reason" "$url")"
+
+        case "$AUTH_ACTION" in
+            "login")
+                local save_path="${SAVE_AUTH:-$OUTPUT_DIR/auth-state.json}"
+                interactive_login "$url" "$save_path"
+                # Re-navigate after login
+                $AGENT_BROWSER open "$url"
+                $AGENT_BROWSER wait --load networkidle 2>/dev/null || $AGENT_BROWSER wait 3000
+                ;;
+            "load")
+                load_auth_state "$AUTH_FILE"
+                # Re-navigate after loading
+                $AGENT_BROWSER open "$url"
+                $AGENT_BROWSER wait --load networkidle 2>/dev/null || $AGENT_BROWSER wait 3000
+                ;;
+            "skip")
+                log_warning "Continuing without authentication"
+                ;;
+            "cancel")
+                log_error "Extraction cancelled by user"
+                exit 1
+                ;;
+        esac
+    fi
+}
+
 # Phase 1: Reconnaissance
 run_recon() {
     if [ "$SKIP_RECON" = true ]; then
@@ -171,7 +319,11 @@ run_recon() {
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
     if [ -f "$LIB_DIR/recon.sh" ]; then
-        bash "$LIB_DIR/recon.sh" "$URL" "$OUTPUT_DIR"
+        # Pass auth state to recon script via environment
+        AUTH_STATE="$AUTH_STATE" bash "$LIB_DIR/recon.sh" "$URL" "$OUTPUT_DIR"
+
+        # Check if auth is required after initial load
+        check_page_auth "$URL"
     else
         # Inline recon if lib script doesn't exist
         log_info "Opening $URL..."
@@ -276,6 +428,41 @@ run_sections() {
     log_success "Section screenshots complete"
 }
 
+# Phase 5: Multi-page Crawl
+run_crawl() {
+    if [ "$CRAWL_MODE" != true ]; then
+        return
+    fi
+
+    log_info "Phase 5: Multi-page Crawl"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+    if [ -f "$LIB_DIR/crawl.sh" ]; then
+        # Pass auth state and max pages to crawl script
+        AUTH_STATE="$AUTH_STATE" bash "$LIB_DIR/crawl.sh" "$URL" "$OUTPUT_DIR" "$MAX_PAGES"
+    else
+        log_warning "crawl.sh not found, using inline crawl"
+
+        # Basic inline crawl - just get links from current page
+        log_info "Extracting links from current page..."
+        mkdir -p "$OUTPUT_DIR/pages"
+
+        $AGENT_BROWSER eval '(function(){
+            const links = new Set();
+            document.querySelectorAll("a[href]").forEach(a => {
+                if (a.href.startsWith("http")) {
+                    links.add(a.href.split("#")[0].split("?")[0]);
+                }
+            });
+            return Array.from(links).slice(0, 20);
+        })()' > "$OUTPUT_DIR/pages/discovered-links.json"
+
+        log_info "Links saved to: $OUTPUT_DIR/pages/discovered-links.json"
+    fi
+
+    log_success "Crawl complete"
+}
+
 # Phase 4: Component Capture
 run_components() {
     if [ "$SKIP_COMPONENTS" = true ]; then
@@ -337,6 +524,21 @@ generate_summary() {
 - \`interactive.json\` - Interactive elements only
 - \`page-source.html\` - Raw HTML
 
+EOF
+
+    # Add crawl section if pages were crawled
+    if [ -d "$OUTPUT_DIR/pages" ] && [ -f "$OUTPUT_DIR/pages/sitemap.json" ]; then
+        cat >> "$OUTPUT_DIR/summary.md" << 'EOF'
+### Multi-page Crawl
+- `pages/sitemap.json` - Complete sitemap of discovered pages
+- `pages/*.png` - Screenshots of each page
+- `pages/*.json` - Page metadata
+- `pages/README.md` - Crawl summary
+
+EOF
+    fi
+
+    cat >> "$OUTPUT_DIR/summary.md" << 'EOF'
 ---
 
 *Generated by DesignDNA Extractor*
@@ -368,6 +570,11 @@ main() {
     # Set trap for cleanup
     trap cleanup EXIT
 
+    # Handle authentication if needed
+    if [ "$LOGIN_MODE" = true ] || [ -n "$AUTH_STATE" ]; then
+        handle_authentication
+    fi
+
     # Run extraction phases
     local start_time
     start_time=$(date +%s)
@@ -376,6 +583,7 @@ main() {
     run_tokens
     run_sections
     run_components
+    run_crawl
     generate_summary
 
     local end_time

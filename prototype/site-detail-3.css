@@ -1,0 +1,354 @@
+/* ===================================
+   Site Detail 3 - At a Glance Styles
+   Enhanced Overview for Designers & Founders
+   =================================== */
+
+/* ===================================
+   At a Glance Section
+   =================================== */
+
+.at-a-glance {
+    margin-bottom: var(--space-10);
+}
+
+.glance-header {
+    margin-bottom: var(--space-6);
+}
+
+.glance-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.glance-subtitle {
+    font-size: 15px;
+    color: var(--color-text-tertiary);
+    margin: 0;
+}
+
+/* Glance Grid - 2x2 on desktop */
+.glance-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+}
+
+/* Glance Card Base */
+.glance-card {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+    transition: all var(--transition-normal);
+}
+
+.glance-card:hover {
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-md);
+}
+
+.glance-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.glance-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.glance-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-secondary);
+}
+
+.glance-icon.success {
+    background: rgba(41, 158, 62, 0.1);
+}
+
+.glance-icon.success svg {
+    color: #299E3E;
+}
+
+.glance-icon.tech {
+    background: rgba(0, 112, 243, 0.1);
+}
+
+.glance-icon.tech svg {
+    color: #0070F3;
+}
+
+.glance-card-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.glance-card-body {
+    /* Content container */
+}
+
+/* ===================================
+   Brand Identity Card
+   =================================== */
+
+.identity-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+}
+
+.color-dots {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.color-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.type-preview-mini {
+    color: var(--color-text-primary);
+}
+
+.identity-traits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.identity-traits li {
+    display: flex;
+    gap: var(--space-2);
+    font-size: 14px;
+}
+
+.trait-label {
+    color: var(--color-text-tertiary);
+    min-width: 60px;
+}
+
+.trait-value {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+/* ===================================
+   Target Audience Card
+   =================================== */
+
+.audience-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.audience-tag {
+    padding: 6px 12px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.audience-tag.primary {
+    background: #000;
+    color: #fff;
+}
+
+.audience-profile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.profile-item {
+    display: flex;
+    gap: var(--space-2);
+    font-size: 14px;
+}
+
+.profile-label {
+    color: var(--color-text-tertiary);
+    min-width: 70px;
+    flex-shrink: 0;
+}
+
+.profile-value {
+    color: var(--color-text-primary);
+}
+
+/* ===================================
+   Success Signals Card
+   =================================== */
+
+.success-factors {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.success-factors li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.factor-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #299E3E;
+}
+
+.factor-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.factor-text {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+}
+
+.factor-text strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+/* ===================================
+   Tech Stack Card
+   =================================== */
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+}
+
+.tech-item:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.tech-logo {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-logo svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-text-primary);
+}
+
+.tech-item span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.tech-note {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: rgba(0, 112, 243, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 112, 243, 0.1);
+}
+
+.tech-note svg {
+    width: 16px;
+    height: 16px;
+    color: #0070F3;
+    flex-shrink: 0;
+}
+
+.tech-note span {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+}
+
+/* ===================================
+   Responsive
+   =================================== */
+
+@media (max-width: 1024px) {
+    .glance-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .identity-preview {
+        flex-direction: column;
+        gap: var(--space-3);
+        align-items: flex-start;
+    }
+
+    .identity-traits li {
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .profile-item {
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tech-note {
+        flex-direction: column;
+        text-align: center;
+    }
+}

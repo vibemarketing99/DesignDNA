@@ -1,6 +1,7 @@
 #!/bin/bash
 # DesignDNA - Reconnaissance Phase
 # Usage: ./recon.sh <url> <output_dir>
+# Environment: AUTH_STATE - path to auth state file (optional)
 
 set -e
 
@@ -14,6 +15,12 @@ fi
 
 echo "[RECON] Starting reconnaissance for: $URL"
 
+# Load auth state if provided
+if [ -n "$AUTH_STATE" ] && [ -f "$AUTH_STATE" ]; then
+    echo "[RECON] Loading authentication state from: $AUTH_STATE"
+    agent-browser state load "$AUTH_STATE" 2>/dev/null || echo "[RECON] Warning: Could not load auth state"
+fi
+
 # Open the URL
 echo "[RECON] Opening URL..."
 agent-browser open "$URL"
@@ -21,6 +28,31 @@ agent-browser open "$URL"
 # Wait for page to fully load
 echo "[RECON] Waiting for page load..."
 agent-browser wait --load networkidle 2>/dev/null || agent-browser wait 3000
+
+# Check for login/auth requirement
+echo "[RECON] Checking page status..."
+CURRENT_URL=$(agent-browser get url 2>/dev/null || echo "$URL")
+PAGE_TITLE=$(agent-browser get title 2>/dev/null || echo "")
+
+# Detect if we were redirected to login
+LOGIN_DETECTED=false
+if [[ "$CURRENT_URL" == *"/login"* ]] || [[ "$CURRENT_URL" == *"/signin"* ]] || [[ "$CURRENT_URL" == *"/auth"* ]]; then
+    echo "[RECON] WARNING: Page appears to redirect to login"
+    LOGIN_DETECTED=true
+fi
+
+# Detect 404 page
+if [[ "$PAGE_TITLE" == *"404"* ]] || [[ "$PAGE_TITLE" == *"Not Found"* ]]; then
+    echo "[RECON] WARNING: Page returned 404"
+    # Check if URL looks like it should be protected
+    if [[ "$URL" == *"/dashboard"* ]] || [[ "$URL" == *"/app"* ]] || [[ "$URL" == *"/admin"* ]] || [[ "$URL" == *"/settings"* ]]; then
+        echo "[RECON] WARNING: This appears to be a protected URL that may require authentication"
+        LOGIN_DETECTED=true
+    fi
+fi
+
+# Store auth detection result
+echo "{\"login_detected\": $LOGIN_DETECTED, \"current_url\": \"$CURRENT_URL\", \"original_url\": \"$URL\"}" > "$OUTPUT_DIR/auth-check.json"
 
 # Take initial screenshots
 echo "[RECON] Taking viewport screenshot..."

@@ -1,0 +1,12 @@
+{
+  "pages": [],
+  "crawl_info": {
+    "domain": "https:",
+    "started": "2026-01-16T06:14:00Z",
+    "max_pages": 15,
+    "completed": "2026-01-16T06:14:14.718572Z",
+    "pages_crawled": 1,
+    "pages_captured": 0,
+    "pages_skipped": 1
+  }
+}
