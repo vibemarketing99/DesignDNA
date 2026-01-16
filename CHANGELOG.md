@@ -4,6 +4,78 @@ All notable changes to EK Master HQ are documented here.
 
 ---
 
+## [2026-01-16] - Category Filtering & Screenshot Lightbox
+
+**Commit:** `a85b312`
+
+**Changes:**
+- Added dynamic page loading from manifest.json (43 Vercel pages)
+- Added category filtering (All Pages, Featured, Company, Products, Solutions, Resources)
+- Added full-screen screenshot lightbox with dark overlay
+- Added hover effects and click handlers for page cards
+- Fixed dropdown menu positioning with overflow adjustments
+- Implemented proper event handler timing for filtering functionality
+
+**Files:**
+- `prototype/load-vercel-pages.js` - New file for dynamic page loading
+- `prototype/site-detail-2.html` - Updated with dynamic content
+- `prototype/site-detail.css` - Added lightbox styles
+
+---
+
+## [2026-01-16] - Phase 0 POC: Reverse-Engineering Component Extraction
+
+**Status:** ✅ SUCCESSFUL - All success criteria met
+
+**Changes:**
+- Created reverse-engineering extraction scripts for component discovery
+- Built pattern recognition algorithm for automatic variant grouping
+- Implemented CSS state extraction (hover, active, focus, disabled)
+- Validated approach on vercel.com (176 components, 16 button variants, 335 states)
+- Achieved 95% variant detection accuracy (target: 90%)
+- 100% specification completeness
+
+**Scripts Created:**
+- `prototype/extraction/scripts/extract-components.js` - DOM analysis & style extraction
+- `prototype/extraction/scripts/analyze-components.js` - Pattern recognition & variant grouping
+- `prototype/extraction/scripts/extract-states.js` - CSS pseudo-class state extraction
+- `prototype/extraction/scripts/screenshot-components.sh` - Component isolation & highlighting
+- `prototype/extraction/scripts/test-poc.sh` - End-to-end POC orchestration
+
+**Results:**
+- Extracted 69 buttons → 10 structural groups → 16 variants
+- Extracted 335 CSS states (197 hover, 58 focus-visible, 37 disabled)
+- Successfully grouped components by similarity (height, border-radius, typography)
+- Accurately classified variants (primary, secondary, outline, ghost)
+- Complete specifications: colors, spacing, typography, effects, position
+
+**Next Steps:** Phase 1 - Core Extraction Pipeline
+- Extend to all component types (inputs, modals, cards, etc.)
+- Implement screenshot capture with highlighting
+- Build design token computation
+- Test on multiple sites (Stripe, Linear, Tailwind UI)
+
+**Files:**
+- `prototype/extraction/output/vercel.com-poc/POC-VALIDATION.md` - Complete validation report
+- `prototype/extraction/output/vercel.com-poc/README.md` - Results summary
+- `prototype/extraction/output/vercel.com-poc/analysis/` - Extracted data
+
+---
+
+## [2026-01-15] - Extraction Agent & Pipeline
+
+**Commit:** `8f2112e`
+
+**Changes:**
+- Created Extraction Agent (`agents/extraction-agent/`)
+- Added workflows, memory, and templates for page extraction
+- Captured Vercel screenshots (homepage, pricing, AI, enterprise, templates, docs)
+- Created `manifest.json` for extraction → UI integration
+- Updated site-detail pages with real screenshot paths
+- Fixed lightbox to load images from `data-screenshot` attribute
+
+---
+
 ## [2026-01-15] - Token Efficiency Rules
 
 **Commit:** `f2fc0db`
